@@ -6,13 +6,15 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/kubernetes-sigs/gateway-api.git'
-    targetRevision: v1.2.1 # Use the latest stable version
+    repoURL: https://github.com/kubernetes-sigs/gateway-api.git
+    targetRevision: v1.2.1
     path: config/crd/standard
   destination:
-    server: 'https://kubernetes.default.svc'
+    server: https://kubernetes.default.svc
     namespace: default
   syncPolicy:
     automated:
-      prune: true
-      selfHeal: true
+      prune: false        # 🚨 REQUIRED
+      selfHeal: false     # 🚨 REQUIRED
+    syncOptions:
+    - ServerSideApply=true

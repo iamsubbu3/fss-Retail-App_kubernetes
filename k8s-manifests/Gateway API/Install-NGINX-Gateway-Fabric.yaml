@@ -6,19 +6,15 @@ metadata:
 spec:
   project: default
   source:
-    chart: nginx-gateway-fabric
-    repoURL: ghcr.io/nginx/charts
-    targetRevision: 2.3.0 # Match the current version
-    helm:
-      parameters:
-        - name: nginx.service.type
-          value: LoadBalancer # Change to NodePort if on a local cluster
+    repoURL: https://github.com/nginxinc/nginx-gateway-fabric
+    targetRevision: v1.5.1
+    path: deploy/default
   destination:
-    server: 'https://kubernetes.default.svc'
+    server: https://kubernetes.default.svc
     namespace: nginx-gateway
   syncPolicy:
     automated:
-      prune: true
+      prune: false      # 🚨 NEVER prune controllers
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
