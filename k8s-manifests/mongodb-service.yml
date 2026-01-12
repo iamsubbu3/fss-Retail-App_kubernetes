@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mongodb
-  namespace: murali-ns
+  namespace: subbu-1-ns
 spec:
   selector:
     app: mongodb
